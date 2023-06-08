@@ -1,3 +1,5 @@
+import './style.css';
+
 export default class pageLoader {
   content = document.querySelector('#content');
 
@@ -33,6 +35,10 @@ export default class pageLoader {
     return ul;
   }
 
+  createMain() {
+    return document.createElement('main');
+  }
+
   createHeadline() {
     const h1 = document.createElement('h1');
     h1.textContent = "Have some hamburger, dude!";
@@ -52,13 +58,27 @@ export default class pageLoader {
       element.appendChild(childElement);
   }
 
-  loadPage() {
+  loadNav() {
     const nav = this.createNav();
-    const header = this.createHeader();
-    this.addChildElementToElement(nav);
     this.addChildElementToElement(this.createList(), nav);
+    return nav;
+  }
+
+  loadHeader() {
+    const header = this.createHeader();
     this.addChildElementToElement(header);
-    this.addChildElementToElement(this.createHeadline(), header);
-    this.addChildElementToElement(this.createParagraph(), header);
+    this.addChildElementToElement(this.loadNav(), header);
+  }
+
+  loadMain() {
+    const main = this.createMain();
+    this.addChildElementToElement(main);
+    this.addChildElementToElement(this.createHeadline(), main);
+    this.addChildElementToElement(this.createParagraph(), main);
+  }
+
+  loadPage() {
+    this.loadHeader();
+    this.loadMain();
   }
 }
