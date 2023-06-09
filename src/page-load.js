@@ -1,6 +1,6 @@
 import './style.css';
 
-export default class pageLoader {
+export default class PageLoader {
   content = document.querySelector('#content');
 
   createHeader() {
