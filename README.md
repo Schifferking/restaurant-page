@@ -6,5 +6,4 @@ This project consists in building a simple restaurant page using some of the con
 - Modules
 
 ## Credits
-- Background photo by [Iwona Castiello d'Antonio](https://unsplash.com/@aquadrata?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/photos/uoyp101wXDw?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
-  
+- [Hamburger background by catalyststuff on Freepik](https://www.freepik.com/free-vector/cheese-burger-cartoon-icon-illustration_11787888.htm#query=hamburguer&position=1&from_view=search&track=sph)
