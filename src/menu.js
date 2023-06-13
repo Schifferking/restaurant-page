@@ -1,3 +1,12 @@
+import Cheeseburger from './images/menu/hamburgers/cheeseburger.jpg';
+import OnionBurger from './images/menu/hamburgers/onion-hamburger.jpg';
+import ChiliBurger from './images/menu/hamburgers/chili-hamburger.jpg';
+import Coke from './images/menu/beverages/coke.jpg';
+import Beer from './images/menu/beverages/beer.jpg';
+import Milkshake from './images/menu/beverages/milkshake.jpg';
+import Water from './images/menu/beverages/water.jpg';
+import Juice from './images/menu/beverages/juice.jpg';
+
 export default class Menu {
   createH1() {
     const h1 = document.createElement('h1');
@@ -7,8 +16,11 @@ export default class Menu {
 
   createH2(content) {
     const h2 = document.createElement('h2');
+    const div = this.createDiv();
     h2.textContent = content;
-    return h2;
+    div.appendChild(h2);
+    div.classList.add('header-container');
+    return div;
   }
 
   createH3(content) {
@@ -27,13 +39,23 @@ export default class Menu {
     return document.createElement('div');
   }
 
-  createProduct(name, description, price) {
+  createImage(src) {
+    const image = new Image();
+    image.src = src;
+    return image;
+  }
+
+  createProduct(name, description, price, productSrc) {
     // price is a string
     const productDiv = this.createDiv();
+    productDiv.classList.add('product-container');
     const productH3 = this.createH3(name);
+    const image = this.createImage(productSrc);
     const productDescription = this.createParagraph(description);
     const productPrice = this.createParagraph(price);
+    productPrice.classList.add('price');
     productDiv.appendChild(productH3);
+    productDiv.appendChild(image);
     productDiv.appendChild(productDescription);
     productDiv.appendChild(productPrice);
     return productDiv;
@@ -43,80 +65,72 @@ export default class Menu {
     const name = 'Cheeseburger';
     const description = 'A delicious burger with some cheese slices. Some of the toppings we offer are lettuce, tomato, onion, pickles, and bacon to name a few.';
     const price = '$2.5';
-    return this.createProduct(name, description, price);
-  }
-
-  createXTudo() {
-    const name = 'X-Tudo';
-    const description = 'This is one of our tallest burgers. Like the cheeseburger, you can choose from many toppings; some of the most common are: beef patties, bacon, lettuce, tomato, corn, sausages and mayonnaise.';
-    const price = '$4';
-    return this.createProduct(name, description, price);
+    const productSrc = Cheeseburger;
+    return this.createProduct(name, description, price, productSrc);
   }
 
   createOnionBurger() {
     const name = 'Onion burger';
     const description = "From Oklahoma, like the name says, it's main ingredient is onion. The onion is caramelized and crispy. It also usually has beef patty, pickles and mustard or mayonnaise.";
     const price = '$3';
-    return this.createProduct(name, description, price);
+    const productSrc = OnionBurger;
+    return this.createProduct(name, description, price, productSrc);
   }
 
   createchiliBurger() {
     const name = 'Chili burger';
     const description = 'This variant contains a not so spicy chili. It is topped with onions and cheese and usually served with fries.';
     const price = '$5';
-    return this.createProduct(name, description, price);
-  }
-
-  createButterBurger() {
-    const name = 'Butter burger';
-    const description = 'A great choice if you really like butter. Also contains onions.';
-    const price = '$3';
-    return this.createProduct(name, description, price);
+    const productSrc = ChiliBurger;
+    return this.createProduct(name, description, price, productSrc);
   }
 
   createCoke() {
     const name = 'Coke';
     const description = 'A simple, yet popular choice.';
     const price = '$0.5';
-    return this.createProduct(name, description, price);
+    const productSrc = Coke;
+    return this.createProduct(name, description, price, productSrc);
   }
 
   createBeer() {
     const name = 'Beer';
     const description = "For some, it's the best drink, for others, not really good.";
     const price = '$4';
-    return this.createProduct(name, description, price);
+    const productSrc = Beer;
+    return this.createProduct(name, description, price, productSrc);
   }
 
   createMilkshake() {
     const name = 'Milkshake';
     const description = 'You know it, a mixture of some ingredients, where milk is the main one. Ask for the different flavours we offer.';
     const price = '$3';
-    return this.createProduct(name, description, price);
+    const productSrc = Milkshake;
+    return this.createProduct(name, description, price, productSrc);
   }
 
   createWater() {
     const name = 'Water';
-    const description = 'Just a water bottle.';
+    const description = 'Just water.';
     const price = '$2';
-    return this.createProduct(name, description, price);
+    const productSrc = Water;
+    return this.createProduct(name, description, price, productSrc);
   }
 
   createJuice() {
     const name = 'Juice';
     const description = 'A single juice bottle. Ask for the options.';
     const price = '$2.5';
-    return this.createProduct(name, description, price);
+    const productSrc = Juice;
+    return this.createProduct(name, description, price, productSrc);
   }
 
   loadBurgers() {
     const burgers = [];
     burgers.push(this.createH2('Burgers'));
     burgers.push(this.createCheeseburger());
-    burgers.push(this.createXTudo());
     burgers.push(this.createOnionBurger());
     burgers.push(this.createchiliBurger());
-    burgers.push(this.createButterBurger());
     return burgers;
   }
 
@@ -132,8 +146,9 @@ export default class Menu {
   }
 
   loadMenu() {
-    const content = document.querySelector('#content');
+    const main = document.querySelector('main');
     const menuContainer = this.createDiv();
+    menuContainer.classList.add('menu-container');
     const h1 = this.createH1();
     const burgers = this.loadBurgers();
     const beverages = this.loadBeverages();
@@ -142,6 +157,6 @@ export default class Menu {
     menuContainer.appendChild(h1);
     for (let product of products)
       menuContainer.appendChild(product);
-    content.appendChild(menuContainer);
+    main.appendChild(menuContainer);
   }
 }

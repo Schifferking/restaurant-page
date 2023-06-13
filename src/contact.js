@@ -66,24 +66,23 @@ export default class Contact {
     return this.createPersonContact(name, position, phone, email);
   }
 
-  loadPersons() {
-    let persons = [];
-    persons.push(this.createH1())
-    persons.push(this.createManager());
-    persons.push(this.createChef());
-    persons.push(this.createWaiter());
-    persons.push(this.createCM());
-    return persons;
+  loadPeople() {
+    let people = [];
+    people.push(this.createH1())
+    people.push(this.createManager());
+    people.push(this.createChef());
+    people.push(this.createWaiter());
+    people.push(this.createCM());
+    return people;
   }
 
   loadContact() {
-    const content = document.querySelector('#content');
-    const personsContainer = this.createDiv();
-    const main = this.createMain();
-    const persons = this.loadPersons();
-    for (let person of persons)
-      personsContainer.appendChild(person);
-    main.append(personsContainer);
-    content.appendChild(main);
+    const main = document.querySelector('main');
+    const contactContainer = this.createDiv();
+    contactContainer.classList.add('contact-container');
+    const people = this.loadPeople();
+    for (let person of people)
+      contactContainer.appendChild(person);
+    main.appendChild(contactContainer);
   }
 }

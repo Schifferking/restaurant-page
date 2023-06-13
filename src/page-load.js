@@ -27,11 +27,25 @@ export default class PageLoader {
     return button;
   }
 
+  createButtons() {
+    let buttons = [];
+    const homeButton = this.createButton('Home');
+    homeButton.classList.add('home');
+    const menuButton = this.createButton('Menu');
+    menuButton.classList.add('menu');
+    const contactButton = this.createButton('Contact');
+    contactButton.classList.add('contact');
+    buttons.push(homeButton);
+    buttons.push(menuButton);
+    buttons.push(contactButton);
+    return buttons;
+  }
+
   createList() {
     const ul = this.createUl();
-    this.addChildElementToElement(this.createLi(this.createButton('Home')), ul);
-    this.addChildElementToElement(this.createLi(this.createButton('Menu')), ul);
-    this.addChildElementToElement(this.createLi(this.createButton('Contact')), ul);
+    const buttons = this.createButtons();
+    for (let button of buttons)
+      this.addChildElementToElement(this.createLi(button), ul);
     return ul;
   }
 
@@ -66,6 +80,17 @@ export default class PageLoader {
     return document.createElement('footer');
   }
 
+  createCreditsList() {
+    const ul = this.createUl();
+    const hamburgerLink = 'https://www.freepik.com/free-vector/cheese-burger-cartoon-icon-illustration_11787888.htm#query=hamburguer&position=1&from_view=search&track=sph';
+    const hamburgerText = 'Hamburger background by catalyststuff on Freepik';
+    const hamburgerIconLink = "https://www.flaticon.com/free-icons/burger";
+    const hamburgerIconText = 'Hamburger icon by Pixel perfect on Flaticon';
+    this.addChildElementToElement(this.createLi(this.createLink(hamburgerLink, hamburgerText)), ul);
+    this.addChildElementToElement(this.createLi(this.createLink(hamburgerIconLink, hamburgerIconText)), ul);
+    return ul;
+  }
+
   addChildElementToElement(childElement, element) {
     if (element === undefined)
       this.content.appendChild(childElement);
@@ -97,14 +122,14 @@ export default class PageLoader {
   }
 
   loadFooter() {
-    const hamburgerLink = 'https://www.freepik.com/free-vector/cheese-burger-cartoon-icon-illustration_11787888.htm#query=hamburguer&position=1&from_view=search&track=sph';
-    const hamburgerText = 'Hamburger background by catalyststuff on Freepik';
     const footer = this.createFooter();
-    this.addChildElementToElement(this.createLink(hamburgerLink, hamburgerText), footer);
+    const creditsList = this.createCreditsList();
     this.addChildElementToElement(footer);
+    this.addChildElementToElement(creditsList, footer);
   }
 
   loadPage() {
+    this.content.classList.add('full-height');
     this.loadHeader();
     this.loadMain();
     this.loadFooter();
