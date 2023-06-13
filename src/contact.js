@@ -27,6 +27,7 @@ export default class Contact {
 
   createPersonContact(name, position, phone, email) {
     const personDiv = this.createDiv();
+    personDiv.classList.add('person-container');
     personDiv.appendChild(this.createH2(name));
     personDiv.appendChild(this.createParagraph(position));
     personDiv.appendChild(this.createParagraph(phone));

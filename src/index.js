@@ -18,6 +18,7 @@ homeButton.addEventListener('click', () => {
     content.classList.add('full-height');
     const main = document.querySelector('main');
     const footer = document.querySelector('footer');
+    main.classList.remove('full-width');
     main.remove();
     footer.remove();
     myPageLoader.loadMain();
@@ -29,8 +30,10 @@ menuButton.addEventListener('click', () => {
   const menuContainer = document.querySelector('.menu-container');
   if (menuContainer === null)
   {
-    content.classList.remove('full-height');
+    const main = document.querySelector('main');
+    main.classList.remove('full-width');
     const pageContent = document.querySelector('#content > main > div');
+    content.classList.remove('full-height');
     pageContent.remove();
     myMenu.loadMenu();
   }
@@ -40,8 +43,10 @@ contactButton.addEventListener('click', () => {
   const contactContainer = document.querySelector('.contact-container');
   if (contactContainer === null)
   {
-    content.classList.remove('full-height');
     const pageContent = document.querySelector('#content > main > div');
+    const main = document.querySelector('main');
+    main.classList.add('full-width');
+    content.classList.remove('full-height');
     pageContent.remove();
     myContact.loadContact();
   }
