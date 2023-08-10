@@ -1,11 +1,9 @@
-import PageLoader from './page-load.js';
-import Menu from './menu.js';
-import Contact from './contact.js';
+import PageLoader from './page-load';
+import Menu from './menu';
+import Contact from './contact';
 
 const myPageLoader = new PageLoader();
 myPageLoader.loadPage();
-const myMenu = new Menu();
-const myContact = new Contact();
 const homeButton = document.querySelector('.home');
 const menuButton = document.querySelector('.menu');
 const contactButton = document.querySelector('.contact');
@@ -35,7 +33,7 @@ menuButton.addEventListener('click', () => {
     const pageContent = document.querySelector('#content > main > div');
     content.classList.remove('full-height');
     pageContent.remove();
-    myMenu.loadMenu();
+    Menu.loadMenu();
   }
 });
 
@@ -48,6 +46,6 @@ contactButton.addEventListener('click', () => {
     main.classList.add('full-width');
     content.classList.remove('full-height');
     pageContent.remove();
-    myContact.loadContact();
+    Contact.loadContact();
   }
 });
